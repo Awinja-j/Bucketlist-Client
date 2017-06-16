@@ -12,6 +12,11 @@ import { AlertService } from './services/alert.service';
 import { AlertComponent } from './directives/alert.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
+import { AddBucketlistComponent } from './bucketlist/addbucketlist.component';
+import { AddItemComponent } from './items/additem.component';
+import { ItemsService } from './services/items.service'
+import { BucketlistService } from './services/bucketlist.service'
+
 
 @NgModule ({
     imports: [
@@ -27,14 +32,17 @@ import { AuthenticationService } from './services/authentication.service';
         BucketlistComponent, 
         ItemsComponent,
         LandingComponent,
-        AlertComponent
+        AlertComponent,
+        AddBucketlistComponent,
+        AddItemComponent
         ],
 
     providers: [
         AlertService,
         AuthGuard,
-        AuthenticationService
-
+        AuthenticationService,
+        ItemsService,
+        BucketlistService
     ],
 
     bootstrap: [AppComponent]

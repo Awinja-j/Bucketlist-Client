@@ -30,40 +30,55 @@
 
   <body>
     <ul class="topnav">
-    <li class="right"><a routerLink="/home">Home</a></li>
-    <li class="right"><a routerLink="/logout">Log Out</a></li>
+    <li class="right"><a routerLink="/landing">Home</a></li>
+    <li class="right"><a routerLink="/bucketlist">My Bucketlist</a></li>
+    <li class="right"><a routerLink="/landing">Log Out</a></li>
 </ul>
 
 <!--signup form-->
-<div style="width: 50%; float:right">
-<h2>Sign In!</h2>
-
-<form action="/action_page.php">
-  <div class="signin_container" >
-
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="uname" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit">Sign In</button>
+<div style="width: 100%;">
+<h2>My Items</h2>
+<button class="btn btn-primary"><a routerLink="/additem">Add an Item</a></button>
+  <div class="items_container" >
+    <div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Special title treatment</h3>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Done</a>
+        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="#" class="btn btn-primary">Delete</a>
+      </div>
+    </div>
   </div>
-</form>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Special title treatment</h3>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Done</a>
+        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="#" class="btn btn-primary">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Special title treatment</h3>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Done</a>
+        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="#" class="btn btn-primary">Delete</a>
+      </div>
+    </div>
+</div>
+  </div>
+</div>
 </div>
 
 <!--end of form-->
-<div style="width: 40%; float:left">
-    <div class="container">
-      <div class="Introduction">
-        <h1>Bucketlist</h1>
-        <p>Welcome back to your bucketlist.<br> Have fun! <br> You Only Live Once!</p>
-      </div>
-
-    </div><!-- /.container -->
-</div>
-
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

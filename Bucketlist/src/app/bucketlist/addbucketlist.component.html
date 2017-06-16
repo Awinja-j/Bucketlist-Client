@@ -31,49 +31,21 @@
   <body>
     <ul class="topnav">
     <li class="right"><a routerLink="/landing">Home</a></li>
+    <li class="right"><a routerLink="/bucketlist">My Bucketlist</a></li>
+    <li class="right"><a routerLink="/items">My Items</a></li>
     <li class="right"><a routerLink="/landing">Log Out</a></li>
 </ul>
 
-<!--signup form-->
-<div style="width: 100%;">
-<h2>My bucketlist!!</h2>
-<button class="btn btn-primary"><a routerLink="/addbucketlist">Add a Bucketlist</a></button>
-  <div class="bucketlist_container">
-  <div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title">Special title treatment</h3>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/items" class="btn btn-primary">View Items</a>
-        <a routerLink="/additem" class="btn btn-primary">Add Items</a>
+<h3>Add New Bucketlist</h3>
 
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title">Special title treatment</h3>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/items" class="btn btn-primary">View Items</a>
-        <a routerLink="/additem" class="btn btn-primary">Add Items</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title">Special title treatment</h3>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/items" class="btn btn-primary">View Items</a>
-        <a routerLink="/additem" class="btn btn-primary">Add Items</a>      
-        </div>
-    </div>
+<div>
+  <form action="/action_page.php">
+    <label for="fname">Enter Title</label>
+    <input type="text" id="bname" name="Title" placeholder="Bucketlist Title">
+    <input type="submit" value="Submit">
+  </form>
 </div>
-  </div>
-</div>
-</div>
+
 <!--end of form-->
     <!-- Bootstrap core JavaScript
     ================================================== -->

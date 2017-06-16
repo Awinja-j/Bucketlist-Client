@@ -20,6 +20,10 @@ var alert_service_1 = require("./services/alert.service");
 var alert_component_1 = require("./directives/alert.component");
 var auth_guard_1 = require("./guards/auth.guard");
 var authentication_service_1 = require("./services/authentication.service");
+var addbucketlist_component_1 = require("./bucketlist/addbucketlist.component");
+var additem_component_1 = require("./items/additem.component");
+var items_service_1 = require("./services/items.service");
+var bucketlist_service_1 = require("./services/bucketlist.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -39,12 +43,16 @@ AppModule = __decorate([
             bucketlist_component_1.BucketlistComponent,
             items_component_1.ItemsComponent,
             landing_component_1.LandingComponent,
-            alert_component_1.AlertComponent
+            alert_component_1.AlertComponent,
+            addbucketlist_component_1.AddBucketlistComponent,
+            additem_component_1.AddItemComponent
         ],
         providers: [
             alert_service_1.AlertService,
             auth_guard_1.AuthGuard,
-            authentication_service_1.AuthenticationService
+            authentication_service_1.AuthenticationService,
+            items_service_1.ItemsService,
+            bucketlist_service_1.BucketlistService
         ],
         bootstrap: [app_component_1.AppComponent]
     })
