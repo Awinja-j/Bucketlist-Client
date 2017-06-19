@@ -15,12 +15,19 @@ export class AuthenticationService{
        headers.append('Content-Type', 'application/json');
        return headers
     }
+    register(email: string, password: string){
+      this._url = `${this._url}`
+      let header = this.createHeader();;
+      let option = new RequestOptions(header);
+      return this.http.post(this._url + '/auth/register', JSON.stringify({email: email, password: password}), option)
+        .map((response: Response) => <any>response.json());
+  }
 
     login(email: string, password: string){
         this._url = `${this._url}`
         let header = this.createHeader();
         let option = new RequestOptions(header);
-        return this.http.post(this._url + '/auth/login', { email: email, password: password }, option)
+        return this.http.post(this._url + '/auth/login', JSON.stringify({email: email, password: password}), option)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();

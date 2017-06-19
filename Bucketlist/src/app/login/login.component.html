@@ -37,18 +37,22 @@
 <div style="width: 50%; float:right">
 <h2>Sign In!</h2>
 
-<form action="/action_page.php">
+<div *ngIf='mode=="login"'>
+  <form (ngSubmit)="login()" *ngIf='user'>
   <div class="signin_container" >
 
     <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="uname" required>
+    <input [(ngModel)]="user.email" type="text" placeholder="Enter Email" name="uname" required>
 
     <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input [(ngModel)]="user.password" type="password" placeholder="Enter Password" name="psw" required>
         
-    <button type="submit"><a routerLink="/bucketlist">Sign In</a></button>
+    <!--<button type="submit" (click)='mode="signup"'><a routerLink="/bucketlist">Sign In</a></button>-->
+    <button type="submit" (click)='mode="signup"'>Sign In</button>
+
   </div>
 </form>
+</div>
 </div>
 
 <!--end of form-->
@@ -59,9 +63,11 @@
         <p>Welcome back to your bucketlist.<br> Have fun! <br> You Only Live Once!</p>
       </div>
 
-    </div><!-- /.container -->
+    </div>
+    <!-- /.container -->
 
 </div>
+
 
 
 
@@ -73,5 +79,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+  
   </body>
 </html>

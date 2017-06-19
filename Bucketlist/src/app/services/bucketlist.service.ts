@@ -23,40 +23,40 @@ export class BucketlistService{
             return new RequestOptions({ headers: headers });
         }
     }
-    GetAll(url: string){
+    GetAll():Observable<Bucketlist[]>{
             let option = this.header();
-            return this.http.get(this._url, option)
+            return this.http.get(`${this._url}/bucketlist/`, option)
             .map((response: Response) => <Bucketlist[]>response.json())
             .catch(this.handleError);
     }
 
-    GetSingle(id: number){
+    GetSingle(id: number):Observable<Bucketlist[]>{
         let option = this.header();
-        return this.http.get(this._url + id, option)
+        return this.http.get(`${this._url}/bucketlist/${id}`, option)
             .map((response: Response) => <Bucketlist>response.json())
             .catch(this.handleError);
     }
 
-    Add(title: string){
+    Add(title: string):Observable<Bucketlist[]>{
         let option = this.header();
         let toAdd = JSON.stringify({ title: title });
 
-        return this.http.post(this._url, toAdd, option)
+        return this.http.post(`${this._url}/bucketlist/`, toAdd, option)
             .map((response: Response) => <Bucketlist>response.json())
             .catch(this.handleError);
     }
 
-    Update(id: number, titleToUpdate: string){
+    Update(id: number, titleToUpdate: string):Observable<Bucketlist[]>{
         let option = this.header();
         let toPut = JSON.stringify({titleToUpdate: titleToUpdate})
-        return this.http.put(this._url + id, toPut ,option)
+        return this.http.put(`${this._url}/bucketlist/${id}`, toPut ,option)
             .map((response: Response) => <Bucketlist>response.json())
             .catch(this.handleError);
     }
 
-    Delete(id: number){
+    Delete(id: number):Observable<Bucketlist[]>{
         let option = this.header();
-        return this.http.delete(this._url + id)
+        return this.http.delete(`${this._url}/bucketlist/${id}`)
             .catch(this.handleError);
     }
 

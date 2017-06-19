@@ -30,58 +30,45 @@
 
   <body>
     <ul class="topnav">
-    <li class="right"><a routerLink="/landing">Home</a></li>
-    <li class="right"><a routerLink="/landing">Log Out</a></li>
-</ul>
+      <li class="right"><a routerLink="/landing">Home</a></li>
+      <li class="right"><a routerLink="/landing">Log Out</a></li>
+    </ul>
 
-<!--signup form-->
-<div style="width: 100%;">
-<h2>My bucketlist!!</h2>
-<button class="btn btn-primary"><a routerLink="/addbucketlist">Add a Bucketlist</a></button>
-  <div class="bucketlist_container">
-  <div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title">Special title treatment</h3>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/items" class="btn btn-primary">View Items</a>
-        <a routerLink="/additem" class="btn btn-primary">Add Items</a>
+      <!--signup form-->
+      <div style="width: 100%;">
+      <h2>My bucketlist!!</h2>
+      <button class="btn btn-primary"><a routerLink="/addbucketlist">Add a Bucketlist</a></button>
 
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title">Special title treatment</h3>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/items" class="btn btn-primary">View Items</a>
-        <a routerLink="/additem" class="btn btn-primary">Add Items</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title">Special title treatment</h3>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/items" class="btn btn-primary">View Items</a>
-        <a routerLink="/additem" class="btn btn-primary">Add Items</a>      
+      <div *ngFor="let bucketlist of bucketlists">
+        <div class="bucketlist_container" >
+        <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-block">
+              <h3 class="card-title">{{bucketlist.name}}</h3>
+              <p class="card-text">Date Created: {{bucketlist.date_created}}</p>
+              <a routerLink="['/addbucketlist', bucketlist.id]"class="btn btn-primary">Edit</a>
+              <a routerLink="['/items', bucketlist.id]"class="btn btn-primary">View Items</a>
+              <a routerLink="['/additem', bucketlist.id]" class="btn btn-primary">Add Items</a>
+              <a ruoterLink = "['delete', bucketlist.id]" class="btn btn-primary" (click)="deleteBucketlist(bucketlist)">Delete</a>
+
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-  </div>
-</div>
-</div>
-<!--end of form-->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+        </div>
+      </div>
+      </div>
+      </div>
+      <!--end of form-->
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
+
+        

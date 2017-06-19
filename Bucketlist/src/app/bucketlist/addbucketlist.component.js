@@ -5,19 +5,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var bucketlist_service_1 = require("../services/bucketlist.service");
+var alert_service_1 = require("../services/alert.service");
+var router_1 = require("@angular/router");
 var AddBucketlistComponent = (function () {
-    function AddBucketlistComponent() {
+    function AddBucketlistComponent(_bucketlistservice, alertservice, router) {
+        this._bucketlistservice = _bucketlistservice;
+        this.alertservice = alertservice;
+        this.router = router;
     }
+    AddBucketlistComponent.prototype.ngOnInit = function () {
+        this.addBucketlist();
+    };
+    AddBucketlistComponent.prototype.addBucketlist = function (title) {
+        var _this = this;
+        this._bucketlistservice
+            .Add(title)
+            .subscribe(function (data) { return _this.mybucketlist = data; }, function (error) { return console.log(error); }, function () { return console.log('Add Bucketlist complete'); });
+    };
     return AddBucketlistComponent;
 }());
 AddBucketlistComponent = __decorate([
     core_1.Component({
         selector: 'addbucketlist-app',
+        providers: [bucketlist_service_1.BucketlistService],
         templateUrl: './addbucketlist.component.html',
         styleUrls: ['./addbucketlist.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [bucketlist_service_1.BucketlistService,
+        alert_service_1.AlertService,
+        router_1.Router])
 ], AddBucketlistComponent);
 exports.AddBucketlistComponent = AddBucketlistComponent;
 //# sourceMappingURL=addbucketlist.component.js.map

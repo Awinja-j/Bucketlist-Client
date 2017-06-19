@@ -19,73 +19,36 @@ export class BucketlistComponent implements OnInit{
                 private router: Router){
                 }
 
-    ngOnInit() {
-        this.getAllItems();
+    ngOnInit(): void {
     }
-    
-    //...
 
- getAllItems(): void {
+  getAllBucketlists():void {
         this._bucketlistservice
             .GetAll()
-            .subscribe((data:Bucketlist[]) => this.myItems = data,
+            .subscribe((data:Bucketlist[]) => this.mybucketlist = data,
                 error => console.log(error),
                 () => console.log('Get all Items complete'));
     }
-}
 
-updateBucketlist(bucketlist:any ){
-        let updatedtitle: any;
-        let bucketlist:any  = [];
-        this.model = {
-            "title":this.updatedtitle
+ updateBucketlist(id: number, title: string):void {
+      if (title){
+        this._bucketlistservice
+            .Update(id, title)
+            .subscribe((data:Bucketlist[]) => this.mybucketlist = data,
+                    error => console.log(error),
+                () => console.log('Update  bucketlists complete'));
+    }
+ }
+
+    deleteBucketlist(id: number): void {
+        if (id){
+            this._bucketlistservice
+            .Delete(id)
+            .subscribe((data:Bucketlist[]) => this.mybucketlist = data,
+                    error => console.log(error),
+                () => console.log('Delete bucketlist complete'));
+    }
+
         }
-        this.loading = true;
-        console.log(this.model)
-        this._bucketlistservice.put('/bucketlists/'+ bucketlist.id + '/', this.model)
-            .subscribe(
-                data => {
-                    this.alertservice.success('Bucketlist Updated successfully', true);
-                    this.getBucketlists();
-                },
-                error => {
-                    this.alertservice.error(error._body);
-                    this.loading = false;
-                });
-    }
 
-    deleteBucketlist(bucketlist:any){
-        let bucketlist:any  = [];
-        this._bucketlistservice.delete('/bucketlists/' + bucketlist.id + '/')
-            .subscribe(
-                    data => {
-                        this.alertservice.success('Bucketlist successfully Deleted', true);
-                        this.getBucketlists();
-                    },
-                    error => {
-                        this.alertservice.error(error._body);
-                        this.loading = false;
-                    });
-
-    }
-
-    addBucketlist(){
-        this.model = {
-            "title":this.bucketname,
-            "items":this.items
-        }
-        console.log(this.model) 
-        this.loading = true;
-        this._dataservice.post('/bucketlists/',this.model)
-            .subscribe(
-                data => {
-                    this.alertservice.success('Bucketlist Successfully created', true);
-                    this.getBucketlists();
-                    this.router.navigate(['/bucketlists']);
-                },
-                error => {
-                    this.alertservice.error(error._body);
-                    this.loading = false;
-                });
-    }
 }

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
-import { Item } from '../models/items.model';
 
 import { AppConfig } from '../app.config';
+import { Item } from '../models/items.model';
 
 @Injectable()
 export class ItemsService{
@@ -23,40 +23,27 @@ export class ItemsService{
             return new RequestOptions({ headers: headers });
         }
     }
-    GetAll(url: string){
-            let option = this.header();
-            return this.http.get(this._url, option)
-            .map((response: Response) => <Item[]>response.json())
-            .catch(this.handleError);
-    }
 
-    GetSingle(id: number){
-        let option = this.header();
-        return this.http.get(this._url + id, option)
-            .map((response: Response) => <Item>response.json())
-            .catch(this.handleError);
-    }
-
-    Add(title: string){
+    Add(b_id: number, title: string):Observable<Item[]>{
         let option = this.header();
         let toAdd = JSON.stringify({ title: title });
 
-        return this.http.post(this._url, toAdd, option)
+        return this.http.post(`${this._url}/bucketlist/${b_id}/items`, toAdd, option)
             .map((response: Response) => <Item>response.json())
             .catch(this.handleError);
     }
 
-    Update(id: number, titleToUpdate: string){
+    Update(b_id: number, id: number, titleToUpdate: string):Observable<Item[]>{
         let option = this.header();
         let toPut = JSON.stringify({titleToUpdate: titleToUpdate})
-        return this.http.put(this._url + id, toPut ,option)
+        return this.http.put(`${this._url}/bucketlist/${b_id}/items/${id}`, toPut ,option)
             .map((response: Response) => <Item>response.json())
             .catch(this.handleError);
     }
 
-    Delete(id: number){
+    Delete(b_id: number, id: number):Observable<Item[]>{
         let option = this.header();
-        return this.http.delete(this._url + id)
+        return this.http.delete(`${this._url}/bucketlist/${b_id}/items/${id}` ,option)
             .catch(this.handleError);
     }
 

@@ -25,11 +25,19 @@ var AuthenticationService = (function () {
         headers.append('Content-Type', 'application/json');
         return headers;
     };
+    AuthenticationService.prototype.register = function (email, password) {
+        this._url = "" + this._url;
+        var header = this.createHeader();
+        ;
+        var option = new http_1.RequestOptions(header);
+        return this.http.post(this._url + '/auth/register', JSON.stringify({ email: email, password: password }), option)
+            .map(function (response) { return response.json(); });
+    };
     AuthenticationService.prototype.login = function (email, password) {
         this._url = "" + this._url;
         var header = this.createHeader();
         var option = new http_1.RequestOptions(header);
-        return this.http.post(this._url + '/auth/login', { email: email, password: password }, option)
+        return this.http.post(this._url + '/auth/login', JSON.stringify({ email: email, password: password }), option)
             .map(function (response) {
             // login successful if there's a jwt token in the response
             var user = response.json();

@@ -31,35 +31,23 @@ var ItemsService = (function () {
             return new http_1.RequestOptions({ headers: headers });
         }
     };
-    ItemsService.prototype.GetAll = function (url) {
-        var option = this.header();
-        return this.http.get(this._url, option)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ItemsService.prototype.GetSingle = function (id) {
-        var option = this.header();
-        return this.http.get(this._url + id, option)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    ItemsService.prototype.Add = function (title) {
+    ItemsService.prototype.Add = function (b_id, title) {
         var option = this.header();
         var toAdd = JSON.stringify({ title: title });
-        return this.http.post(this._url, toAdd, option)
+        return this.http.post(this._url + "/bucketlist/" + b_id + "/items", toAdd, option)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ItemsService.prototype.Update = function (id, titleToUpdate) {
+    ItemsService.prototype.Update = function (b_id, id, titleToUpdate) {
         var option = this.header();
         var toPut = JSON.stringify({ titleToUpdate: titleToUpdate });
-        return this.http.put(this._url + id, toPut, option)
+        return this.http.put(this._url + "/bucketlist/" + b_id + "/items/" + id, toPut, option)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ItemsService.prototype.Delete = function (id) {
+    ItemsService.prototype.Delete = function (b_id, id) {
         var option = this.header();
-        return this.http.delete(this._url + id)
+        return this.http.delete(this._url + "/bucketlist/" + b_id + "/items/" + id, option)
             .catch(this.handleError);
     };
     ItemsService.prototype.handleError = function (error) {

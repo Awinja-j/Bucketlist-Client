@@ -29,50 +29,51 @@
   </head>
 
   <body>
-    <!--
-      <div ng-style="{'background-image': 'url(' + ../assets/images/devices.png + '')'}">-->
-    <ul class="topnav">
-    <li class="right"><a routerLink="/login">Login</a></li>
-</ul>
+        <ul class="topnav">
+        <li class="right"><a routerLink="/login">Login</a></li>
+        </ul>
 
-<!--signup form-->
-<div style="width: 50%; float:right">
-<h2>Sign Up!</h2>
+      <!--signup form-->
+        <div style="width: 50%; float:right">
+          <h2>Sign Up!</h2>
+          
+            <div *ngIf='mode=="signup"'>
+              <form (ngSubmit)="register()" *ngIf='user' >
+                <div class="signup_container" >
 
-<form action="/action_page.php">
-  <div class="signup_container" >
+                  <label><b>Email</b></label>
+                  <input [(ngModel)]="user.username" type="text" placeholder="Enter Email" name="uname" required>
+                  
 
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="uname" required>
+                  <label><b>Password</b></label>
+                  <input [(ngModel)]="user.password" type="password" placeholder="Enter Password" name="psw" required>
+                      
+                  <button (click)='mode="login"' type="submit">Sign Up</button>
+                </div>
+              </form>
+            </div>
+        </div>
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit">Sign Up</button>
-  </div>
-</form>
-</div>
+      <!--end of form-->
+      <div style="width: 40%; float:left">
+          <div class="container">
+            <div class="Introduction">
+              <h1>Bucketlist</h1>
+              <p>According to Merriam-Webster Dictionary, <br>
+                  a Bucket List is a list of things that one has not done before but wants to do before dying.</p>
+            </div>
 
-<!--end of form-->
-<div style="width: 40%; float:left">
-    <div class="container">
-      <div class="Introduction">
-        <h1>Bucketlist</h1>
-        <p>According to Merriam-Webster Dictionary, <br>
-            a Bucket List is a list of things that one has not done before but wants to do before dying.</p>
-      </div>
-
-    </div><!-- /.container -->
-</div>
+          </div><!-- /.container -->
+          </div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+          <!-- Bootstrap core JavaScript
+          ================================================== -->
+          <!-- Placed at the end of the document so the pages load faster -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+          <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+          <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
