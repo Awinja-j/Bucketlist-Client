@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { routing } from './app.routing';
+import { AppConfig } from './app.config';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -16,15 +17,17 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { AddBucketlistComponent } from './bucketlist/addbucketlist.component';
 import { AddItemComponent } from './items/additem.component';
-import { ItemsService } from './services/items.service'
-import { BucketlistService } from './services/bucketlist.service'
+import { NavBar } from './nav/nav.component';
+import { UserService } from './services/user.service';
+import { dataService } from './services/data.service';
 
 
 @NgModule ({
     imports: [
         BrowserModule,
         FormsModule,
-        routing
+        routing,
+        HttpModule
     ],
 
     declarations:[
@@ -36,15 +39,17 @@ import { BucketlistService } from './services/bucketlist.service'
         LandingComponent,
         AlertComponent,
         AddBucketlistComponent,
-        AddItemComponent
+        AddItemComponent,
+        NavBar
         ],
 
     providers: [
+        AppConfig,
         AlertService,
         AuthGuard,
         AuthenticationService,
-        ItemsService,
-        BucketlistService
+        UserService,
+        dataService
     ],
 
     bootstrap: [AppComponent]

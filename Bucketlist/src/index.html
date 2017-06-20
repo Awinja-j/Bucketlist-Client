@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>My Bucketlist</title>
     <base href="/">
-    <title>Bucketlist</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="styles.css">
+    <link href="./scripts/bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./scripts/bootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="scripts/bootstrap/bootstrap/css/landing-page.css" rel="stylesheet">
+    <link href="scripts/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet">
 
     <!-- Polyfills -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
@@ -17,19 +21,13 @@
     <script>
       System.import('main.js').catch(function(err){ console.error(err); });
     </script>
-    <script>
-            // Get the modal
-            var modal = document.getElementById('id01');
-
-              // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-          }
-  </script>
   </head>
+
   <body>
     <my-app>Loading...</my-app>
+    <script src="./scripts/bootstrap/js/jquery.js"></script>
+    <script src="./scripts/bootstrap/jquery.min.js"></script>
+    <script src="./scripts/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./scripts/js/ie-emulation-modes-warning.js"></script>
   </body>
 </html>

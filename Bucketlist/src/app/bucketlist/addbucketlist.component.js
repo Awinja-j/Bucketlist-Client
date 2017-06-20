@@ -10,35 +10,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var bucketlist_service_1 = require("../services/bucketlist.service");
 var alert_service_1 = require("../services/alert.service");
+var data_service_1 = require("../services/data.service");
+var bucketlist_component_1 = require("../bucketlist/bucketlist.component");
 var router_1 = require("@angular/router");
 var AddBucketlistComponent = (function () {
-    function AddBucketlistComponent(_bucketlistservice, alertservice, router) {
-        this._bucketlistservice = _bucketlistservice;
+    function AddBucketlistComponent(_dataservice, alertservice, bucketcomponent, router) {
+        this._dataservice = _dataservice;
         this.alertservice = alertservice;
+        this.bucketcomponent = bucketcomponent;
         this.router = router;
+        this.bucketlists = [];
+        this.model = {};
+        this.loading = false;
+        this.currentUser = [];
     }
-    AddBucketlistComponent.prototype.ngOnInit = function () {
-        this.addBucketlist();
-    };
-    AddBucketlistComponent.prototype.addBucketlist = function (title) {
+    AddBucketlistComponent.prototype.addBucketlist = function () {
         var _this = this;
-        this._bucketlistservice
-            .Add(title)
-            .subscribe(function (data) { return _this.mybucketlist = data; }, function (error) { return console.log(error); }, function () { return console.log('Add Bucketlist complete'); });
+        this.model = {
+            "title": this.buckettitle,
+            "created_by": this.currentUser.id
+        };
+        console.log(this.currentUser.id);
+        this.loading = true;
+        this._dataservice.post('/bucketlists/', this.model)
+            .subscribe(function (data) {
+            _this.alertservice.success('Bucketlist Successfully created', true);
+            _this.bucketcomponent.getBucketlists();
+            _this.router.navigate(['/bucketlist']);
+        }, function (error) {
+            _this.alertservice.error(error._body);
+            _this.loading = false;
+        });
     };
     return AddBucketlistComponent;
 }());
 AddBucketlistComponent = __decorate([
     core_1.Component({
         selector: 'addbucketlist-app',
-        providers: [bucketlist_service_1.BucketlistService],
+        providers: [bucketlist_component_1.BucketlistComponent],
         templateUrl: './addbucketlist.component.html',
         styleUrls: ['./addbucketlist.component.css']
     }),
-    __metadata("design:paramtypes", [bucketlist_service_1.BucketlistService,
+    __metadata("design:paramtypes", [data_service_1.dataService,
         alert_service_1.AlertService,
+        bucketlist_component_1.BucketlistComponent,
         router_1.Router])
 ], AddBucketlistComponent);
 exports.AddBucketlistComponent = AddBucketlistComponent;

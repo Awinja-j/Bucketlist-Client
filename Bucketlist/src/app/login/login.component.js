@@ -12,41 +12,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentication_service_1 = require("../services/authentication.service");
+var alert_service_1 = require("../services/alert.service");
 var LoginComponent = (function () {
-    function LoginComponent(authService, _service, _router) {
+    function LoginComponent(authService, _service, _router, route) {
         this.authService = authService;
         this._service = _service;
         this._router = _router;
-        this.mode = 'login';
-        this.user = {
-            'email': '',
-            'password': '',
-        };
+        this.route = route;
+        this.loading = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this.user.email = '';
-        this.user.password = '';
-        this.token = localStorage.getItem('token');
+        // this.authService.logout();
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/bucketlist';
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.response = this.authService.login(this.user.username, this.user.password)
-            .subscribe(function (response) {
-            response = response;
-            if (response['result']) {
-                localStorage.setItem('token', response['access_token']);
-                localStorage.setItem('authorised', response['result']);
-                _this._router.navigate(['/bucketlists']);
-            }
-            else {
-                _this._service.error('Oops.', response['error'], {
-                    timeOut: 3000,
-                    pauseOnHover: false,
-                    clickToClose: false,
-                    maxLength: 50
-                });
-                localStorage.setItem('authorised', response['result']);
-            }
+        this.authService.login(this.email, this.password)
+            .subscribe(function (data) {
+            _this._router.navigate([_this.returnUrl]);
+        }, function (error) {
+            _this._service.error(error._body);
+            _this.loading = false;
         });
     };
     return LoginComponent;
@@ -56,12 +42,12 @@ LoginComponent = __decorate([
         selector: 'login-app',
         templateUrl: './login.component.html',
         styleUrls: ['./login.component.css'],
-        // providers:[ AlertService ],
-        providers: [authentication_service_1.AuthenticationService]
+        providers: [alert_service_1.AlertService, authentication_service_1.AuthenticationService]
     }),
     __metadata("design:paramtypes", [authentication_service_1.AuthenticationService,
-        authentication_service_1.AuthenticationService,
-        router_1.Router])
+        alert_service_1.AlertService,
+        router_1.Router,
+        router_1.ActivatedRoute])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

@@ -11,44 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var user_service_1 = require("../services/user.service");
+var alert_service_1 = require("../services/alert.service");
 var authentication_service_1 = require("../services/authentication.service");
 var LandingComponent = (function () {
-    function LandingComponent(authService, _service, _router) {
-        this.authService = authService;
-        this._service = _service;
-        this._router = _router;
+    function LandingComponent(router, userService, alertService, authservice) {
+        this.router = router;
+        this.userService = userService;
+        this.alertService = alertService;
+        this.authservice = authservice;
+        this.model = {};
+        this.loading = false;
         this.mode = 'register';
-        this.user = {
-            'email': '',
-            'password': '',
-        };
     }
-    LandingComponent.prototype.ngOnInit = function () {
-        this.user.email = '';
-        this.user.password = '';
-    };
     LandingComponent.prototype.register = function () {
         var _this = this;
-        this.response = this.authService.register(this.user.email, this.user.password)
-            .subscribe(function (response) {
-            response = response;
-            if (response['result']) {
-                _this._service(response['message'], '', {
-                    timeOut: 3000,
-                    pauseOnHover: false,
-                    clickToClose: false,
-                    maxLength: 50
-                });
-                _this.login();
-            }
-            else {
-                _this._service.error('Oops.', response['error'], {
-                    timeOut: 3000,
-                    pauseOnHover: false,
-                    clickToClose: false,
-                    maxLength: 50
-                });
-            }
+        this.model = {
+            "email": this.email,
+            "password": this.password
+        };
+        console.log(this.model);
+        this.loading = true;
+        this.userService.create(this.model)
+            .subscribe(function (data) {
+            _this.alertService.success('Registration successful', true);
+            _this.authservice.login(_this.email, _this.password).subscribe(function (data) {
+                _this.router.navigate(['/bucketlist']);
+            }, function (error) {
+                _this.alertService.error(error._body);
+                _this.loading = false;
+            });
+        }, function (error) {
+            _this.alertService.error(error._body);
+            _this.loading = false;
         });
     };
     return LandingComponent;
@@ -57,12 +52,12 @@ LandingComponent = __decorate([
     core_1.Component({
         selector: 'landing-app',
         templateUrl: './landing.component.html',
-        styleUrls: ['./landing.component.css'],
-        providers: [authentication_service_1.AuthenticationService]
+        styleUrls: ['./landing.component.css']
     }),
-    __metadata("design:paramtypes", [authentication_service_1.AuthenticationService,
-        authentication_service_1.AuthenticationService,
-        router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router,
+        user_service_1.UserService,
+        alert_service_1.AlertService,
+        authentication_service_1.AuthenticationService])
 ], LandingComponent);
 exports.LandingComponent = LandingComponent;
 //# sourceMappingURL=landing.component.js.map

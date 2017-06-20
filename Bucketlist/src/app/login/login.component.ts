@@ -2,60 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { AlertService } from '../services/alert.service';
-import { User } from '../models/user.model';
-
 
 @Component({
     selector:'login-app',
     templateUrl:'./login.component.html',
     styleUrls: ['./login.component.css'],
-    // providers:[ AlertService ],
-    providers:[ AuthenticationService ]
+    providers:[ AlertService, AuthenticationService ]
 
 })
-export class LoginComponent implements OnInit{
-    user: User;
-    response: any;
-    token: string;
-    mode: string = 'login';
-  
+export class LoginComponent implements OnInit {
+    loading = false;
+    email: string;
+    password: string;
+    returnUrl: string;
+
     constructor(private authService: AuthenticationService,
-                private _service: AuthenticationService,
-                private _router: Router) {
-                this.user = {
-                'email': '',
-                'password': '',
-          }
-                }
+                private _service: AlertService,
+                private _router: Router,
+                private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.user.email = '';
-        this.user.password = '';
-        this.token = localStorage.getItem('token');
+        // this.authService.logout();
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/bucketlist';
+    }
+    login(){
+        this.authService.login(this.email, this.password)
+            .subscribe(
+                data =>{
+                    this._router.navigate([this.returnUrl])
+                },
+                error => {
+                    this._service.error(error._body);
+                    this.loading = false;
+                }
+            )
     }
 
-    login() {
-        this.response = this.authService.login(this.user.username, this.user.password)
-        .subscribe(response => {
-            response = response;
-            if(response['result']) {
-                localStorage.setItem('token', response['access_token']);
-                localStorage.setItem('authorised', response['result']);
-                this._router.navigate(['/bucketlists']);
-            }
-            else{
-                this._service.error(
-                        'Oops.',
-                        response['error'],
-                        {
-                            timeOut: 3000,
-                            pauseOnHover: false,
-                            clickToClose: false,
-                            maxLength: 50
-                        }
-                    );
-                localStorage.setItem('authorised', response['result']);
-            }
-        });
-    }
-                }
+}
