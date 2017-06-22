@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 import { AlertService } from '../services/alert.service';
 import { dataService } from '../services/data.service';
@@ -8,6 +8,7 @@ declare var $: any;
 
 @Component({
     selector: 'bucketlist-app',
+    providers: [dataService, AlertService],
     templateUrl: './bucketlist.component.html',
     styleUrls:['./bucketlist.component.css']
 })
@@ -16,15 +17,19 @@ export class BucketlistComponent implements OnInit{
     model: any = {};
     loading = false;
     bucketname:string;
-    bucketid: any;
-    updatedname: any;
+    bucketid: number;
+    updatedtitle: any;
     itemname: any;
     url:any;
     items:any = []; 
+    
 
     constructor( private _dataservice: dataService,
                  private alertservice: AlertService,
-                 private router: Router){}
+                 private router: Router,
+                 private route: ActivatedRoute){
+                     
+                 }
     ngOnInit(){
         this.getBucketlists();
     }
@@ -36,26 +41,23 @@ export class BucketlistComponent implements OnInit{
             
             
     }
-    assignId(bucketlist:any){
-        this.bucketid = bucketlist.id;
+    // assignId(bucketlist:any){
+    //     this.bucketid = bucketlist.id;
+    // }
+
+    goToEditbucketlist(id:number){
+        
+        this.router.navigate(['/editbucketlist'], {queryParams: {"id":id}});
     }
-    updateBucketlist(bucketlist:any ){
-        this.model = {
-            "name":this.updatedname
-        }
-        this.loading = true;
-        console.log(this.model)
-        this._dataservice.put('/bucketlists/'+ this.bucketid + '/', this.model)
-            .subscribe(
-                data => {
-                    this.alertservice.success('Bucketlist Updated successfully', true);
-                    // this.getBucketlists();
-                    this.router.navigate(['/bucketlist']);
-                },
-                error => {
-                    this.alertservice.error(error._body);
-                    this.loading = false;
-                });
+
+    goToViewItems(id:number){
+        console.log(id)
+        this.router.navigate(['/items'], {queryParams: {"id":id}});
+    }
+            
+
+    goToAddItem(id:number){
+        this.router.navigate(['/additem'], {queryParams: {"id":id}});
     }
 
     deleteBucketlist(bucketlist:any){

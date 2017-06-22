@@ -14,19 +14,26 @@ var router_1 = require("@angular/router");
 var alert_service_1 = require("../services/alert.service");
 var data_service_1 = require("../services/data.service");
 var ItemsComponent = (function () {
-    function ItemsComponent(_dataservice, alertservice, router) {
+    function ItemsComponent(_dataservice, alertservice, router, route) {
+        var _this = this;
         this._dataservice = _dataservice;
         this.alertservice = alertservice;
         this.router = router;
+        this.route = route;
         this.items = [];
         this.model = {};
         this.loading = false;
+        this.route.queryParams.subscribe(function (params) {
+            console.log(params);
+            _this.bucketid = Number.parseInt(params.id);
+        });
     }
     ItemsComponent.prototype.ngOnInit = function () {
         this.getitems();
     };
     ItemsComponent.prototype.getitems = function () {
         var _this = this;
+        console.log(this.bucketid);
         this._dataservice.get('/bucketlists/' + this.bucketid + '/items/')
             .subscribe(function (items) {
             _this.items = items.items;
@@ -80,7 +87,8 @@ ItemsComponent = __decorate([
     }),
     __metadata("design:paramtypes", [data_service_1.dataService,
         alert_service_1.AlertService,
-        router_1.Router])
+        router_1.Router,
+        router_1.ActivatedRoute])
 ], ItemsComponent);
 exports.ItemsComponent = ItemsComponent;
 //# sourceMappingURL=items.component.js.map

@@ -2,9 +2,9 @@
 <h3>Edit Bucketlist</h3>
 <div>
   <form name="form" #f="ngForm" (submit)="updateBucketlist()" novalidate>
-    <label for title ="btitle">Enter New Title</label>
-    <input  type="text" [(ngModel)]="buckettitle" id="buckettitle" name="buckettitle" placeholder="Bucketlist Title">
-    <input type="submit" id="Editbucket" value="Submit">
+    <label for title ="updatedtitle">Enter New Title</label>
+    <input  type="text" [(ngModel)]="updatedtitle" id="updatedtitle" name="updatedtitle" placeholder="New Bucketlist Title">
+    <input type="submit" id="Editbucket" value="Save">
   </form>
 </div>
 

@@ -17,6 +17,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { AddBucketlistComponent } from './bucketlist/addbucketlist.component';
 import { AddItemComponent } from './items/additem.component';
+import { EditBucketlistComponent } from './bucketlist/editbucketlist.component';
 import { NavBar } from './nav/nav.component';
 import { UserService } from './services/user.service';
 import { dataService } from './services/data.service';
@@ -40,7 +41,8 @@ import { dataService } from './services/data.service';
         AlertComponent,
         AddBucketlistComponent,
         AddItemComponent,
-        NavBar
+        NavBar,
+        EditBucketlistComponent
         ],
 
     providers: [

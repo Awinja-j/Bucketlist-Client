@@ -14,10 +14,11 @@ var router_1 = require("@angular/router");
 var alert_service_1 = require("../services/alert.service");
 var data_service_1 = require("../services/data.service");
 var BucketlistComponent = (function () {
-    function BucketlistComponent(_dataservice, alertservice, router) {
+    function BucketlistComponent(_dataservice, alertservice, router, route) {
         this._dataservice = _dataservice;
         this.alertservice = alertservice;
         this.router = router;
+        this.route = route;
         this.bucketlists = [];
         this.model = {};
         this.loading = false;
@@ -34,25 +35,18 @@ var BucketlistComponent = (function () {
             console.log(bucketlists);
         });
     };
-    BucketlistComponent.prototype.assignId = function (bucketlist) {
-        this.bucketid = bucketlist.id;
+    // assignId(bucketlist:any){
+    //     this.bucketid = bucketlist.id;
+    // }
+    BucketlistComponent.prototype.goToEditbucketlist = function (id) {
+        this.router.navigate(['/editbucketlist'], { queryParams: { "id": id } });
     };
-    BucketlistComponent.prototype.updateBucketlist = function (bucketlist) {
-        var _this = this;
-        this.model = {
-            "name": this.updatedname
-        };
-        this.loading = true;
-        console.log(this.model);
-        this._dataservice.put('/bucketlists/' + this.bucketid + '/', this.model)
-            .subscribe(function (data) {
-            _this.alertservice.success('Bucketlist Updated successfully', true);
-            // this.getBucketlists();
-            _this.router.navigate(['/bucketlist']);
-        }, function (error) {
-            _this.alertservice.error(error._body);
-            _this.loading = false;
-        });
+    BucketlistComponent.prototype.goToViewItems = function (id) {
+        console.log(id);
+        this.router.navigate(['/items'], { queryParams: { "id": id } });
+    };
+    BucketlistComponent.prototype.goToAddItem = function (id) {
+        this.router.navigate(['/additem'], { queryParams: { "id": id } });
     };
     BucketlistComponent.prototype.deleteBucketlist = function (bucketlist) {
         var _this = this;
@@ -74,12 +68,14 @@ var BucketlistComponent = (function () {
 BucketlistComponent = __decorate([
     core_1.Component({
         selector: 'bucketlist-app',
+        providers: [data_service_1.dataService, alert_service_1.AlertService],
         templateUrl: './bucketlist.component.html',
         styleUrls: ['./bucketlist.component.css']
     }),
     __metadata("design:paramtypes", [data_service_1.dataService,
         alert_service_1.AlertService,
-        router_1.Router])
+        router_1.Router,
+        router_1.ActivatedRoute])
 ], BucketlistComponent);
 exports.BucketlistComponent = BucketlistComponent;
 //# sourceMappingURL=bucketlist.component.js.map

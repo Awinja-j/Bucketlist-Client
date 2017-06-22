@@ -12,32 +12,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var alert_service_1 = require("../services/alert.service");
 var data_service_1 = require("../services/data.service");
-var bucketlist_component_1 = require("../bucketlist/bucketlist.component");
+var items_component_1 = require("../items/items.component");
 var router_1 = require("@angular/router");
 var AddItemComponent = (function () {
-    function AddItemComponent(_dataservice, alertservice, bucketcomponent, router) {
+    function AddItemComponent(_dataservice, alertservice, itemscomponent, router, route) {
+        var _this = this;
         this._dataservice = _dataservice;
         this.alertservice = alertservice;
-        this.bucketcomponent = bucketcomponent;
+        this.itemscomponent = itemscomponent;
         this.router = router;
+        this.route = route;
         this.Items = [];
         this.model = {};
         this.loading = false;
-        this.currentUser = [];
+        this.route.queryParams.subscribe(function (params) {
+            console.log(params);
+            _this.bucketid = Number.parseInt(params.id);
+        });
     }
-    AddItemComponent.prototype.addItem = function (item) {
+    AddItemComponent.prototype.addItem = function () {
         var _this = this;
         this.model = {
             "title": this.itemtitle,
             "done": "False"
         };
-        // console.log(this.model) 
         this.loading = true;
-        this.url = '/bucketlists/' + this.bucketid + '/items/';
+        this.url = '/bucketlists/' + this.bucketid + '/items';
         this._dataservice.post(this.url, this.model)
             .subscribe(function (data) {
             _this.alertservice.success('Item Successfully created', true);
-            _this.router.navigate(['/bucketlists/' + _this.bucketid + '/items/']);
+            // this.itemscomponent.getitems();
+            _this.router.navigate(['/bucketlists/' + _this.bucketid + '/items']);
         }, function (error) {
             _this.alertservice.error(error._body);
             _this.loading = false;
@@ -48,14 +53,15 @@ var AddItemComponent = (function () {
 AddItemComponent = __decorate([
     core_1.Component({
         selector: 'additem-app',
-        providers: [bucketlist_component_1.BucketlistComponent],
+        providers: [data_service_1.dataService, alert_service_1.AlertService, items_component_1.ItemsComponent],
         templateUrl: './additem.component.html',
         styleUrls: ['./additem.component.css']
     }),
     __metadata("design:paramtypes", [data_service_1.dataService,
         alert_service_1.AlertService,
-        bucketlist_component_1.BucketlistComponent,
-        router_1.Router])
+        items_component_1.ItemsComponent,
+        router_1.Router,
+        router_1.ActivatedRoute])
 ], AddItemComponent);
 exports.AddItemComponent = AddItemComponent;
 //# sourceMappingURL=additem.component.js.map

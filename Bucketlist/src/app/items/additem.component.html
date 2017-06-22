@@ -1,10 +1,10 @@
 <nav-app></nav-app>
 <h3>Add New Item</h3>
 <div>
-  <form name="form" #f="ngForm" (submit)="addItem(item)" novalidate>
+  <form name="form" #f="ngForm" (submit)="addItem()" novalidate>
   <label for title ="title">Enter Item Title</label>
   <input type="text" [(ngModel)]="itemtitle" id="itemtitle" name="itemtitle" placeholder="Item Title">
-  <input type="submit" id="AddItem" value="Submit">
+  <input type="submit" id="AddItem" value="Add">
 </form>
 </div>
 

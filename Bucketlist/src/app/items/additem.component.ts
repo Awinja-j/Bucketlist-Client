@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { AlertService } from '../services/alert.service';
 import { dataService } from '../services/data.service';
 
-import { BucketlistComponent } from '../bucketlist/bucketlist.component';
+import { ItemsComponent } from '../items/items.component';
 
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 
 @Component({
     selector:'additem-app',
-    providers: [BucketlistComponent],
+    providers: [dataService, AlertService, ItemsComponent],
     templateUrl:'./additem.component.html',
     styleUrls: ['./additem.component.css']
 
@@ -19,28 +19,34 @@ export class AddItemComponent{
     model: any = {};
     loading = false;
     itemtitle:string;
-    itemid: any;
     url:any;
-    currentUser: any = [];
     bucketid: any;
 
     constructor( private _dataservice: dataService,
                  private alertservice: AlertService,
-                 private bucketcomponent: BucketlistComponent,
-                 private router: Router){}
-    addItem(item:any){
+                 private itemscomponent: ItemsComponent,
+                 private router: Router,
+                 private route: ActivatedRoute
+                  ){
+                      this.route.queryParams.subscribe(params => {
+                          console.log(params);
+                      this.bucketid = Number.parseInt(params.id);
+        });
+                  }
+    addItem(){
+        
         this.model = {
             "title":this.itemtitle,
             "done": "False"
         }
-        // console.log(this.model) 
         this.loading = true;
-        this.url = '/bucketlists/' + this.bucketid + '/items/';
+        this.url = '/bucketlists/' + this.bucketid + '/items';
         this._dataservice.post(this.url,this.model)
             .subscribe(
                 data => {
                     this.alertservice.success('Item Successfully created', true);
-                    this.router.navigate(['/bucketlists/' + this.bucketid + '/items/']);
+                    // this.itemscomponent.getitems();
+                    this.router.navigate(['/bucketlists/' + this.bucketid + '/items']);
                 },
                 error => {
                     this.alertservice.error(error._body);

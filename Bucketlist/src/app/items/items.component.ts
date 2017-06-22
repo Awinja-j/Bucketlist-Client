@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 import { AlertService } from '../services/alert.service';
 import { dataService } from '../services/data.service';
@@ -20,15 +20,23 @@ export class ItemsComponent implements OnInit{
     itemid: any;
     updatedtitle: any;
     url:any;
-    bucketid: any;
+    bucketid: number;
     constructor( private _dataservice: dataService,
                  private alertservice: AlertService,
-                 private router: Router){}
+                 private router: Router,
+                 private route: ActivatedRoute)
+                 {
+                     this.route.queryParams.subscribe(params => {
+                          console.log(params);
+                      this.bucketid = Number.parseInt(params.id);
+        });
+                  }
     ngOnInit(){
         this.getitems();
     }
 
     getitems(){
+        console.log(this.bucketid)
         this._dataservice.get('/bucketlists/'+ this.bucketid + '/items/')
             .subscribe(items => 
             { this.items = items.items;

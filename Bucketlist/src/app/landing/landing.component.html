@@ -1,4 +1,4 @@
-<nav-app></nav-app>
+
  <div style="width: 40%;float:left">
         <div class="container">
           <div class="Introduction">
@@ -9,8 +9,8 @@
         </div>
 
     </div>
-    <div style="width: 50%; float:left">
-    <h2>Sign UP!</h2>
+    <div style="width: 60%; float:right">
+    <h2>Sign Up!</h2>
     <alert-app></alert-app>
       <div class="signup_container">
           <form name="form"  #f="ngForm" (submit)="register()" novalidate>
@@ -21,7 +21,7 @@
                 <input type="password" [(ngModel)]="password"  placeholder="Enter Password" name="psw" required>
 
                 <button type="submit" >Sign up</button>
-                <p>Already have an account?</p><a href="/login">Click Here</a>
+                <p>Already have an account?<a href="/login">Click Here</a></p>
             </form>
           </div>
     </div>

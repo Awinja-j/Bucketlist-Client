@@ -1,20 +1,21 @@
 <nav-app></nav-app>
   <!--signup form-->
-  <div style="width: 100%;">
-  <h2>My bucketlist!!</h2>
-  <a routerLink="/addbucketlist"><button class="btn btn-primary">Add a Bucketlist</button></a>
+  <div>
+  <h2 class="col-lg-12">My bucketlist!!</h2>
+  <button routerLink="/addbucketlist" class="btn btn-primary col-lg-12">Add a Bucketlist</button>
+  </div>
 
+<div class="row">
   <div *ngFor="let bucketlist of bucketlists">
     <div class="bucketlist_container" >
-    <div class="row">
     <div class="col-sm-4">
       <div class="card">
         <div class="card-block">
           <h3 class="card-title">{{bucketlist.title}}</h3>
           <p class="card-text">Date Created: {{bucketlist.date_created}}</p>
-          <a routerLink="['/addbucketlist', bucketid]"class="btn btn-primary">Edit</a>
-          <a routerLink="['/items', bucketid]"class="btn btn-primary">View Items</a>
-          <a routerLink="['/additem', bucketid]" class="btn btn-primary">Add Items</a>
+          <a (click)="goToEditbucketlist(bucketlist.id)"class="btn btn-primary">Edit</a>
+          <a (click)="goToViewItems(bucketlist.id)"class="btn btn-primary">View Items</a>
+          <a (click)="goToAddItem(bucketlist.id)" class="btn btn-primary">Add Items</a>
           <a routerLink = "['delete', bucketid]" class="btn btn-primary" (click)="deleteBucketlist(bucketlist)">Delete</a>
 
         </div>
@@ -23,23 +24,5 @@
     </div>
   </div>
   </div>
-   <!-- pager -->
-            <!--<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
-  </div>-->
+
     
