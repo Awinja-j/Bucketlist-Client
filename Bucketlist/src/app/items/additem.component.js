@@ -41,8 +41,9 @@ var AddItemComponent = (function () {
         this._dataservice.post(this.url, this.model)
             .subscribe(function (data) {
             _this.alertservice.success('Item Successfully created', true);
-            // this.itemscomponent.getitems();
-            _this.router.navigate(['/bucketlists/' + _this.bucketid + '/items']);
+            _this.itemscomponent.getitems();
+            console.log(_this.bucketid);
+            _this.router.navigate(['/items'], { queryParams: { "id": _this.bucketid } });
         }, function (error) {
             _this.alertservice.error(error._body);
             _this.loading = false;

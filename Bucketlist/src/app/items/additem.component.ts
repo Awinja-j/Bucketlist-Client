@@ -34,7 +34,6 @@ export class AddItemComponent{
         });
                   }
     addItem(){
-        
         this.model = {
             "title":this.itemtitle,
             "done": "False"
@@ -45,8 +44,9 @@ export class AddItemComponent{
             .subscribe(
                 data => {
                     this.alertservice.success('Item Successfully created', true);
-                    // this.itemscomponent.getitems();
-                    this.router.navigate(['/bucketlists/' + this.bucketid + '/items']);
+                    this.itemscomponent.getitems();
+                    console.log(this.bucketid)
+                    this.router.navigate(['/items'], {queryParams: {"id":this.bucketid}});
                 },
                 error => {
                     this.alertservice.error(error._body);

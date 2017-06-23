@@ -31,34 +31,22 @@ var ItemsComponent = (function () {
     ItemsComponent.prototype.ngOnInit = function () {
         this.getitems();
     };
+    ItemsComponent.prototype.goToEditItem = function (itemId) {
+        this.router.navigate(['/edititem'], { queryParams: { "id": this.bucketid, "itemId": itemId } });
+    };
+    ItemsComponent.prototype.addItem = function () {
+        this.router.navigate(['/additem'], { queryParams: { "id": this.bucketid } });
+    };
     ItemsComponent.prototype.getitems = function () {
         var _this = this;
-        console.log(this.bucketid);
-        this._dataservice.get('/bucketlists/' + this.bucketid + '/items/')
+        this._dataservice.get('/bucketlists/' + this.bucketid + '/items')
             .subscribe(function (items) {
-            _this.items = items.items;
+            _this.items = items.Items;
             console.log(items);
         });
     };
     ItemsComponent.prototype.assignId = function (bucketlist) {
         this.bucketid = bucketlist.id;
-    };
-    ItemsComponent.prototype.updateitem = function (item) {
-        var _this = this;
-        this.model = {
-            "title": this.updatedtitle
-        };
-        this.loading = true;
-        this.url = '/bucketlists/' + this.bucketid + '/items/' + this.itemid;
-        this._dataservice.put(this.url, this.model)
-            .subscribe(function (data) {
-            _this.alertservice.success('Bucketlist Updated successfully', true);
-            // this.getBucketlists();
-            _this.router.navigate(['/bucketlists/' + _this.bucketid + '/items/']);
-        }, function (error) {
-            _this.alertservice.error(error._body);
-            _this.loading = false;
-        });
     };
     ItemsComponent.prototype.deleteitem = function (item) {
         var _this = this;
@@ -66,11 +54,13 @@ var ItemsComponent = (function () {
             'id': this.itemid
         };
         this.url = '/bucketlists/' + this.bucketid + '/items/';
-        this._dataservice.delete(this.url, this.model)
+        this._dataservice.delete(this.url, item.id)
             .subscribe(function (data) {
             _this.alertservice.success('Item successfully Deleted', true);
-            _this.getitems();
-            _this.router.navigate(_this.url);
+            var index = _this.items.indexOf(item);
+            if (index > -1) {
+                _this.items.splice(index, 1);
+            }
         }, function (error) {
             _this.alertservice.error(error._body);
             _this.loading = false;
@@ -83,7 +73,7 @@ ItemsComponent = __decorate([
         selector: 'items-app',
         providers: [data_service_1.dataService, alert_service_1.AlertService],
         templateUrl: './items.component.html',
-        styleUrls: ['./items.component.css']
+        styleUrls: ['./items.component.css'],
     }),
     __metadata("design:paramtypes", [data_service_1.dataService,
         alert_service_1.AlertService,

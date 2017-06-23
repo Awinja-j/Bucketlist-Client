@@ -10,10 +10,10 @@ declare var $: any;
     selector:'items-app',
     providers: [dataService, AlertService],
     templateUrl:'./items.component.html',
-    styleUrls: ['./items.component.css']
+    styleUrls: ['./items.component.css'],
 })
 export class ItemsComponent implements OnInit{
-    items :any  = [];
+    items: any  = [];
     model: any = {};
     loading = false;
     itemtitle:string;
@@ -21,25 +21,34 @@ export class ItemsComponent implements OnInit{
     updatedtitle: any;
     url:any;
     bucketid: number;
+    searchtitle: string;
     constructor( private _dataservice: dataService,
                  private alertservice: AlertService,
                  private router: Router,
                  private route: ActivatedRoute)
                  {
-                     this.route.queryParams.subscribe(params => {
+                      this.route.queryParams.subscribe(params => {
                           console.log(params);
                       this.bucketid = Number.parseInt(params.id);
         });
                   }
     ngOnInit(){
         this.getitems();
+    
+    }
+    goToEditItem(itemId:number){
+        
+        this.router.navigate(['/edititem'], {queryParams: {"id":this.bucketid, "itemId": itemId}});
+    }
+    addItem(){
+        
+        this.router.navigate(['/additem'], {queryParams: {"id":this.bucketid}});
     }
 
     getitems(){
-        console.log(this.bucketid)
-        this._dataservice.get('/bucketlists/'+ this.bucketid + '/items/')
+        this._dataservice.get('/bucketlists/'+ this.bucketid + '/items')
             .subscribe(items => 
-            { this.items = items.items;
+            { this.items = items.Items;
             console.log(items) });
             
             
@@ -48,36 +57,22 @@ export class ItemsComponent implements OnInit{
         this.bucketid = bucketlist.id;
     }
 
-    updateitem(item:any ){
-        this.model = {
-            "title":this.updatedtitle
-        }
-        this.loading = true;
-        this.url = '/bucketlists/'+ this.bucketid + '/items/' + this.itemid;
-        this._dataservice.put(this.url, this.model)
-            .subscribe(
-                data => {
-                    this.alertservice.success('Bucketlist Updated successfully', true);
-                    // this.getBucketlists();
-                    this.router.navigate(['/bucketlists/'+ this.bucketid + '/items/']);
-                },
-                error => {
-                    this.alertservice.error(error._body);
-                    this.loading = false;
-                });
-    }
+    
 
     deleteitem(item:any){
         this.model = {
             'id':this.itemid
         }
         this.url = '/bucketlists/' + this.bucketid + '/items/';
-        this._dataservice.delete(this.url, this.model)
+        this._dataservice.delete(this.url, item.id)
         .subscribe(
             (data:any) => {
                 this.alertservice.success('Item successfully Deleted', true);
-                this.getitems();
-                this.router.navigate(this.url);
+                let index = this.items.indexOf(item);
+
+                if (index > -1) {
+                    this.items.splice(index, 1);
+                }
             },
             (error:any) => {
                 this.alertservice.error(error._body);
@@ -87,5 +82,6 @@ export class ItemsComponent implements OnInit{
     }
     
 }
+
 
 

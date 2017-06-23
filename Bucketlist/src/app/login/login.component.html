@@ -9,8 +9,9 @@
         </div>
 
     </div>
-    <div style="width: 50%; float:left">
-    <h2>Sign In!</h2>
+    <div style="width: 50%; float:right">
+    <h1>Welcome back to your bucketlist!</h1>
+    <h2>Log In!</h2>
     <alert-app></alert-app>
       <div class="signin_container">
           <form name="form"  #f="ngForm" (submit)="login()" novalidate>
@@ -20,7 +21,7 @@
                 <label for password = "password"><b>Password</b></label>
                 <input type="password" [(ngModel)]="password"  placeholder="Enter Password" name="psw" required>
 
-                <button type="submit" >Sign In</button>
+                <button type="submit" >Log In</button>
             </form>
           </div>
     </div>

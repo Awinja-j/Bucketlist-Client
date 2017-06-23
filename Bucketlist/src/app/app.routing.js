@@ -10,6 +10,7 @@ var landing_component_1 = require("./landing/landing.component");
 var addbucketlist_component_1 = require("./bucketlist/addbucketlist.component");
 var additem_component_1 = require("./items/additem.component");
 var editbucketlist_component_1 = require("./bucketlist/editbucketlist.component");
+var edititem_component_1 = require("./items/edititem.component");
 var appRoutes = [
     { path: 'home', component: app_component_1.AppComponent },
     { path: 'register', component: register_component_1.RegisterComponent },
@@ -19,7 +20,8 @@ var appRoutes = [
     { path: '', component: landing_component_1.LandingComponent },
     { path: 'additem', component: additem_component_1.AddItemComponent },
     { path: 'addbucketlist', component: addbucketlist_component_1.AddBucketlistComponent },
-    { path: 'editbucketlist', component: editbucketlist_component_1.EditBucketlistComponent }
+    { path: 'editbucketlist', component: editbucketlist_component_1.EditBucketlistComponent },
+    { path: 'edititem', component: edititem_component_1.EditItemComponent }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);
 //# sourceMappingURL=app.routing.js.map

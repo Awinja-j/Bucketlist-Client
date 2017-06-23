@@ -31,7 +31,6 @@ var AddBucketlistComponent = (function () {
             "title": this.buckettitle,
             "created_by": this.currentUser.id
         };
-        // console.log(this.currentUser.id)
         this.loading = true;
         this._dataservice.post('/bucketlists/', this.model)
             .subscribe(function (data) {

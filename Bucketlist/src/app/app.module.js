@@ -25,6 +25,7 @@ var authentication_service_1 = require("./services/authentication.service");
 var addbucketlist_component_1 = require("./bucketlist/addbucketlist.component");
 var additem_component_1 = require("./items/additem.component");
 var editbucketlist_component_1 = require("./bucketlist/editbucketlist.component");
+var edititem_component_1 = require("./items/edititem.component");
 var nav_component_1 = require("./nav/nav.component");
 var user_service_1 = require("./services/user.service");
 var data_service_1 = require("./services/data.service");
@@ -52,7 +53,8 @@ AppModule = __decorate([
             addbucketlist_component_1.AddBucketlistComponent,
             additem_component_1.AddItemComponent,
             nav_component_1.NavBar,
-            editbucketlist_component_1.EditBucketlistComponent
+            editbucketlist_component_1.EditBucketlistComponent,
+            edititem_component_1.EditItemComponent
         ],
         providers: [
             app_config_1.AppConfig,

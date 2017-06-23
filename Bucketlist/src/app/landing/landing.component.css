@@ -2,7 +2,7 @@
 body {
   padding-top: 50px;
   /*margin: 0;*/
-  background-color: lightblue;
+  /*background-color: lightblue;*/
   
 }
 .Introduction {
@@ -37,11 +37,6 @@ button {
 
 button:hover {
     opacity: 0.8;
-}
-
-.signup_container {
-    /*padding: 20px;*/
-    /*float: left;*/
 }
 
 span.psw {

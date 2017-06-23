@@ -33,8 +33,6 @@ var dataService = (function () {
     };
     dataService.prototype.get = function (url) {
         var option = this.header();
-        console.log(option);
-        console.log(this._url);
         return this.http.get(this._url + url, option)
             .map(this.retrieveData);
     };

@@ -42,11 +42,33 @@ var BucketlistComponent = (function () {
         this.router.navigate(['/editbucketlist'], { queryParams: { "id": id } });
     };
     BucketlistComponent.prototype.goToViewItems = function (id) {
-        console.log(id);
         this.router.navigate(['/items'], { queryParams: { "id": id } });
     };
     BucketlistComponent.prototype.goToAddItem = function (id) {
+        console.log(id);
         this.router.navigate(['/additem'], { queryParams: { "id": id } });
+    };
+    BucketlistComponent.prototype.searchBucketlist = function () {
+        var bucketlists = [];
+        var search = this.searchbucketlist;
+        if (search) {
+            this.bucketlists.forEach(function (bucketlist) {
+                if (bucketlist.title.toLowerCase().includes(search.toLowerCase())) {
+                    bucketlists.push(bucketlist);
+                }
+            });
+            if (bucketlists.length === 0) {
+                console.log('This item does not exist!');
+            }
+            this.bucketlists = bucketlists;
+        }
+        else {
+            this.getBucketlists();
+        }
+        //    console.log("meow ",this.searchbucketlist);
+        // this._dataservice.get('/bucketlists?q=' + this.searchbucketlist)
+        //     .subscribe((bucketlists: any) => { this.bucketlists = bucketlists.Bucketlists;
+        //    console.log("meow ",bucketlists) });
     };
     BucketlistComponent.prototype.deleteBucketlist = function (bucketlist) {
         var _this = this;
@@ -70,7 +92,7 @@ BucketlistComponent = __decorate([
         selector: 'bucketlist-app',
         providers: [data_service_1.dataService, alert_service_1.AlertService],
         templateUrl: './bucketlist.component.html',
-        styleUrls: ['./bucketlist.component.css']
+        styleUrls: ['./bucketlist.component.css'],
     }),
     __metadata("design:paramtypes", [data_service_1.dataService,
         alert_service_1.AlertService,

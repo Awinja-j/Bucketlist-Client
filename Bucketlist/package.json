@@ -41,6 +41,7 @@
     "@angular/upgrade": "~4.2.0",
     "angular-in-memory-web-api": "~0.3.2",
     "core-js": "^2.4.1",
+    "ng2-pagination": "^2.0.2",
     "rxjs": "5.0.1",
     "systemjs": "0.19.39",
     "zone.js": "^0.8.4"
