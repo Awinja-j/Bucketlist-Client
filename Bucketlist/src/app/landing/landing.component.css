@@ -5,6 +5,9 @@ body {
   /*background-color: lightblue;*/
   
 }
+h4 {
+    color: white;
+}
 .Introduction {
   padding: 40px 15px;
   /*text-align: left;*/

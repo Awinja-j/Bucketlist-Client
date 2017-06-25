@@ -3,7 +3,18 @@
         <div class="container">
           <div class="Introduction">
             <h1>Bucketlist</h1>
-            <p>Welcome back to your bucketlist.<br> Have fun! <br> You Only Live Once!</p>
+            <h4>If you don't live the days of your life achieving something
+              <br> whether it's a goal,plans, or dreams, <br>
+              chances are you spend most of your life simply existing.</h4>
+
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            <h4>For once you have tasted flight, <br>you will walk the earth with your eyes turned skywards,<br>
+             for there you have been <br>and there you will long to return.</h4>
+             <h5>~Leornado Da Vinci</h5>
           </div>
 
         </div>
@@ -18,7 +29,7 @@
                 <input type="text" [(ngModel)]="email"  placeholder="Enter Email" name="email" required>
 
                 <label for password = "password"><b>Password</b></label>
-                <input type="password" [(ngModel)]="password"  placeholder="Enter Password" name="psw" required>
+                <input type="password" [(ngModel)]="password"  placeholder="Enter Password" name="psw"  minlength="5" required>
 
                 <button type="submit" >Sign up</button>
                 <p>Already have an account?<a href="/login">Click Here</a></p>

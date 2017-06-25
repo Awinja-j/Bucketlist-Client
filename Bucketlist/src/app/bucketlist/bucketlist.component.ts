@@ -5,6 +5,8 @@ import { AlertService } from '../services/alert.service';
 import { dataService } from '../services/data.service';
 
 import { Bucketlist } from '../models/bucketlist.model';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 
 declare var $: any;
@@ -41,10 +43,7 @@ export class BucketlistComponent implements OnInit{
     getBucketlists(){
         this._dataservice.get('/bucketlists/')
             .subscribe(bucketlists => { this.bucketlists = bucketlists.Bucketlists;
-           console.log(bucketlists) });
-            
-            
-    }
+           console.log(bucketlists) }); }
     // assignId(bucketlist:any){
     //     this.bucketid = bucketlist.id;
     // }

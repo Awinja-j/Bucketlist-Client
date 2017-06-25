@@ -10,13 +10,13 @@
   </div>
 
 <div class="row">
-  <div *ngFor="let bucketlist of bucketlists ">
+  <div *ngFor="let bucketlist of bucketlists">
     <div class="bucketlist_container" >
     <div class="col-sm-4">
       <div class="card">
         <div class="card-block">
           <h3 class="card-title">{{bucketlist.title}}</h3>
-          <p class="card-text">Date Created: {{bucketlist.date_created}}</p>
+          <p class="card-text">Date Created: {{bucketlist.date_created |date:'MM/dd/yyyy @ h:mma'}}</p>
           <a (click)="goToEditbucketlist(bucketlist.id)"class="btn btn-primary">Edit</a>
           <a (click)="goToViewItems(bucketlist.id)"class="btn btn-primary">View Items</a>
           <a (click)="goToAddItem(bucketlist.id)" class="btn btn-primary">Add Items</a>

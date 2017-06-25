@@ -51,7 +51,7 @@ export class dataService {
         return this.http.delete(this._url + url + id.toString(), option)
             .map(this.retrieveData);
     }
-
+    
     private retrieveData(response: Response) {
     let body = response.json();
     return body || {};
