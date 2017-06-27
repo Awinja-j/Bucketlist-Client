@@ -1,0 +1,11 @@
+<nav-app></nav-app>
+<h3>Edit Bucketlist</h3>
+<div>
+  <form name="form" #f="ngForm" (submit)="updateBucketlist()" novalidate>
+    <label for title ="updatedtitle">Enter New Title</label>
+    <input  type="text" [(ngModel)]="updatedtitle" id="updatedtitle" name="updatedtitle" placeholder="New Bucketlist Title">
+    <input type="submit" id="Editbucket" value="Save">
+  </form>
+</div>
+
+ 

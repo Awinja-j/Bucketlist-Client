@@ -29,12 +29,13 @@ var AuthenticationService = (function () {
         this._url = "" + this._url;
         var header = this.createHeader();
         var option = new http_1.RequestOptions(header);
+        console.log(option);
         return this.http.post(this._url + '/auth/login', { email: email, password: password }, option)
             .map(function (response) {
             // login successful if there's a jwt token in the response
             var user = response.json();
-            console.log(response);
-            if (user && user.token) {
+            console.log(user.Authorization);
+            if (user && user.Authorization) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
             }

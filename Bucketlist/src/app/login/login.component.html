@@ -1,77 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <nav-app></nav-app>
+    <div style="width: 40%;float:left;">
+        <div class="container">
+          <div class="Introduction">
+            <h1>Bucketlist</h1>
+            <h4>Welcome back to your bucketlist.<br> Have fun! <br> You Only Live Once!</h4>
+          <br>
+          <br>
+          <br>
+          <br>
 
-    <title>Bucketlist</title>
+          <h4>My message, especially to young people is to have courage <br>
+            to think differently,<br>
+           courage to invent, <br>
+           to travel the unexplored path, <br>
+           courage to discover <br>
+           the impossible and to conquer the problems and succeed. <br>
+          These are great qualities that they must work towards. <br>
+          This is my message to the young people.</h4>
+          <h5>~A.P.J. ABDUL KALAM</h5>
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        </div>
+        </div>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    </div>
+    <div style="width: 50%; float:right">
+    <h1>Welcome back to your bucketlist!</h1>
+    <h2>Log In!</h2>
+    <alert-app></alert-app>
+      <div class="signin_container">
+          <form name="form"  #f="ngForm" (submit)="login()" novalidate>
+                <label for email = "email"><b>Email</b></label>
+                <input type="text" [(ngModel)]="email"  placeholder="Enter Email" name="email" required>
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+                <label for password = "password"><b>Password</b></label>
+                <input type="password" [(ngModel)]="password"  placeholder="Enter Password" name="psw" minlength="5" required>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+                <button type="submit" >Log In</button>
+            </form>
+          </div>
+    </div>
 
-  <body>
-    <ul class="topnav">
-    <li class="right"><a routerLink="/landing">Home</a></li>
-</ul>
+    <!--end of form-->
+    
 
-<!--signup form-->
-<div style="width: 50%; float:right">
-<h2>Sign In!</h2>
-
-<form action="/action_page.php">
-  <div class="signin_container" >
-
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="uname" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit"><a routerLink="/bucketlist">Sign In</a></button>
-  </div>
-</form>
-</div>
-
-<!--end of form-->
-<div style="width: 100%;">
-    <div class="container">
-      <div class="Introduction">
-        <h1>Bucketlist</h1>
-        <p>Welcome back to your bucketlist.<br> Have fun! <br> You Only Live Once!</p>
-      </div>
-
-    </div><!-- /.container -->
-
-</div>
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>

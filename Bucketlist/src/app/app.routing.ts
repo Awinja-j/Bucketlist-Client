@@ -8,6 +8,8 @@ import { ItemsComponent } from './items/items.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddBucketlistComponent } from './bucketlist/addbucketlist.component';
 import { AddItemComponent } from './items/additem.component';
+import { EditBucketlistComponent } from './bucketlist/editbucketlist.component';
+import { EditItemComponent } from './items/edititem.component';
 
 
 
@@ -19,7 +21,9 @@ const appRoutes: Routes = [
     {path: 'items', component:ItemsComponent},
     {path: '', component:LandingComponent},
     {path: 'additem', component:AddItemComponent},
-    {path: 'addbucketlist', component:AddBucketlistComponent}
+    {path: 'addbucketlist', component:AddBucketlistComponent},
+    {path: 'editbucketlist', component:EditBucketlistComponent},
+    {path: 'edititem', component:EditItemComponent}
 
 ];
 export const routing = RouterModule.forRoot(appRoutes)

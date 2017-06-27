@@ -13,19 +13,20 @@ export class AuthenticationService{
        let headers = new Headers();
        headers.append('Access-Control-Allow-Origin', '*');
        headers.append('Content-Type', 'application/json');
-       return headers
+       return headers;
     }
 
     login(email: string, password: string){
         this._url = `${this._url}`
         let header = this.createHeader();
         let option = new RequestOptions(header);
-        return this.http.post(this._url + '/auth/login', { email: email, password: password }, option)
+        console.log(option)
+        return this.http.post(this._url + '/auth/login', {email: email, password: password}, option)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                console.log(response)
-                if (user && user.token) {
+                console.log(user.Authorization)
+                if (user && user.Authorization) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }

@@ -1,46 +1,22 @@
 
 body {
   padding-top: 50px;
-  margin: 0;
+  /*margin: 0;*/
+  /*background-color: lightblue;*/
   
+}
+h4 {
+    color: white;
 }
 .Introduction {
   padding: 40px 15px;
-  text-align: left;
+  /*text-align: left;*/
 }
 
-ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-ul.topnav li {float: left;}
-
-ul.topnav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-ul.topnav li a:hover:not(.active) {background-color: #111;}
-
-ul.topnav li a.active {background-color: #4CAF50;}
-
-ul.topnav li.right {float: right;}
-
-@media screen and (max-width: 600px){
-    ul.topnav li.right, 
-    ul.topnav li {float: none;}
-    }
 form {
-    border: 4px solid #f1f1f1;
+    /*border: 4px solid #f1f1f1;*/
     display: inline-block;
-    text-align: right;
+    /*text-align: right;*/
 }
 
 input[type=text], input[type=password] {
@@ -66,12 +42,7 @@ button:hover {
     opacity: 0.8;
 }
 
-.signup_container {
-    padding: 16px;
-    float: right;
-}
-
 span.psw {
-    float: right;
+    float: left;
     padding-top: 16px;
 }
