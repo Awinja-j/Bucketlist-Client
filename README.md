@@ -11,4 +11,4 @@ To install all the dependencies run `npm install`
 Run it with `npm start`
 
 ### landing page
-![Screen shot](Bucketlist/screenshots/landing)
+![Screen shot](Bucketlist/screenshots/landing.png)
